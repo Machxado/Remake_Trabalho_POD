@@ -1,0 +1,17 @@
+Paciente1__Marcio Lisboa:94874091067:10/09/2001:Solteiro:Unimed:10000
+Paciente2__Ana Laerte:27293662025:16/02/1981:Casado:SUS:0
+Enfermeira__Edenilson Kühl:14063975045:02/12/1977:Solteiro:1736821
+Medico__Carlos Lúcio:84497741010:24/04/1987:Casado:CRM/RS 598721
+Secretaria__Lucia Espindola:09809707655:12/03/1987:Casado
+
+Secretaria=cadastrar->Secretaria
+Secretaria=cadastrar->Medico
+Secretaria=cadastrar->Enfermeira
+Enfermeira=cadastrar->Paciente1
+Enfermeira=cadastrar->Paciente2
+Medico=diagnosticar->Paciente1:Lesao Leve
+Medico=liberar->Paciente1
+Enfermeira=relatorio->Paciente1
+Medico=diagnosticar->Paciente2:Reacao alergica
+Medico=liberar->Paciente2
+Enfermeira=relatorio->Paciente2

@@ -1,0 +1,15 @@
+Paciente1__Daniel Matos:56091266063:22/03/1994:Solteiro:SUS:0
+Paciente2__Antonio Duarte:34119802060:24/08/1947:Solteiro:IPE:2505
+Enfermeira__Edenilson Kühl:14063975045:02/12/1977:Solteiro:1736821
+Medico__Lauro Lira:05541398045:30/11/1968:Solteiro:CRM/RS 618795
+Secretaria__Lucia Espindola:09809707655:12/03/1987:Casado
+
+Secretaria=cadastrar->Medico
+Enfermeira=cadastrar->Paciente1
+Enfermeira=cadastrar->Paciente2
+Medico=diagnosticar->Paciente1:Dor de cotovelo
+Medico=liberar->Paciente1
+Enfermeira=relatorio->Paciente1
+Medico=diagnosticar->Paciente2:Fratura no osso femur
+Medico=internar->Paciente2
+Enfermeira=relatorio->Paciente2
