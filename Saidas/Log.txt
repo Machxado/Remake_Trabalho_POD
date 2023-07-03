@@ -1,2 +1,0 @@
-
-Foi detectado um erro ao tentar criar Augusto, por isso o objeto não foi criado. Erro: O CRM informado 123456 já foi registrado.

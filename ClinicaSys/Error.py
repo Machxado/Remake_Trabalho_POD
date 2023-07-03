@@ -66,6 +66,18 @@ class creditos_Invalidos(Erro):
     def __str__(self):
         return f'A quantia informada {self.__estadoInvalido} não é um número'
     
+
+    
+class coren_Existente(Erro):
+    def __init__(self,causa):
+        super().__init__(causa)
+        self.__coren = causa
+    
+    def __str__(self):
+        return f'O COREN informado {self.__coren} já foi registrado.'
+    
+
+
 class crm_Existente(Erro):
     def __init__(self,causa):
         super().__init__(causa)
@@ -73,7 +85,7 @@ class crm_Existente(Erro):
     
     def __str__(self):
         return f'O CRM informado {self.__crm} já foi registrado.'
-    
+
     
 
 def verifica_cpf(cpf,nome):
@@ -130,9 +142,9 @@ def verifica_data(data,nome):
         return False
     else:
         try:
-            dia=int(data[0:1])
-            mes=int(data[3:4])
-            ano=int(data[6:9])
+            dia=int(data[0:2])
+            mes=int(data[3:5])
+            ano=int(data[6:10])
         except ValueError:
             log.writelines(f'\nFoi detectado um erro ao tentar criar {nome}, por isso o objeto não foi criado. Erro:{data_Invalida}')
             log.close()
@@ -158,20 +170,46 @@ def verifica_credito(credito,nome):
         return False
     else: return True
 
+
+
 def verifica_crm_existe(crm,nome):
     log=open('Saidas\\Log.txt','a')
     database=open('Saidas\\database\\funcionarios.dat','r')   
     
-    medicos=database.readlines()
-    database.close()
     crms=[]
-    for i in medicos:
-        crms.append(i.split(',')[5].split(':')[1][1:-1])
+    for i in database.readlines():
+        if i.split(',')[0][7:] == 'Medico':
+            crms.append(i.split(',')[5].split(':')[1][1:-1])
     try:
-        print(crms)
         assert crm not in crms
     except AssertionError:
         log.writelines(f'\nFoi detectado um erro ao tentar criar {nome}, por isso o objeto não foi criado. Erro: {crm_Existente(crm)}')
         log.close()
+        database.close()
         return False
-    else: return True
+    else:
+        log.close()
+        database.close() 
+        return True
+
+
+
+def verifica_coren_existe(coren,nome):
+    log=open('Saidas\\Log.txt','a')
+    database=open('Saidas\\database\\funcionarios.dat','r')   
+    
+    corens=[]
+    for i in database.readlines():
+        if i.split(',')[0][7:] == 'Enfermeira':
+            corens.append(i.split(',')[5].split(':')[1][1:-1])
+    try:
+        assert coren not in corens
+    except AssertionError:
+        log.writelines(f'\nFoi detectado um erro ao tentar criar {nome}, por isso o objeto não foi criado. Erro: {coren_Existente(coren)}')
+        log.close()
+        database.close()
+        return False
+    else:
+        log.close()
+        database.close() 
+        return True
