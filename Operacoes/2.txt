@@ -12,4 +12,4 @@ Medico=liberar->Paciente1
 Enfermeira=relatorio->Paciente1
 Medico=diagnosticar->Paciente2:Fratura no osso femur
 Medico=internar->Paciente2
-Enfermeira=relatorio->Paciente2
+Enfermeira=relatorio->Paciente2 

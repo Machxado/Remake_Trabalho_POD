@@ -1,0 +1,17 @@
+Paciente1__Marlon Rodrigues:58137041087:14/09/1945:Casado:IPE:7070
+Paciente2__Flacio Amaral:0635312006:22/04/1993:Solteira:Unimed:5001
+Enfermeira__Alicia Lima:08289412037:03/08/1972:Solteiro:6218774
+Medico__Isabella Cardoso:83423139056:09/01/1981:Casado:CRM/RS 854721
+Secretaria__Lucia Espindola:09809707655:12/03/1987:Casado
+
+Secretaria=cadastrar->Medico
+Secretaria=cadastrar->Enfermeira
+Enfermeira=cadastrar->Paciente1
+Enfermeira=cadastrar->Paciente2
+Medico=diagnosticar->Paciente1:Principio de infarto
+Medico=internar->Paciente1
+Medico=liberar->Paciente1
+Enfermeira=relatorio->Paciente1
+Medico=diagnosticar->Paciente2:Conjuntivite bacteriana
+Medico=liberar->Paciente2
+Enfermeira=relatorio->Paciente2 

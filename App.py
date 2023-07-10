@@ -2,7 +2,9 @@ from ClinicaSys import Classes as cls
 from ClinicaSys.Error import *
 
 #abrindo arquivo txt e garantia de que haverá arquivo
-for dia in range(1,2):
+for dia in range(1,6):
+    
+    print(f'DIA : {dia} ')
     arqname=str(dia)+'.txt'
     arq='Operacoes\\'+arqname
 
@@ -34,8 +36,8 @@ for dia in range(1,2):
                 if(verifica_cpf(cpf,nome) and verifica_convenio(plano, nome) and verifica_data(data_nasc,nome) and verifica_est_civil(est_civil,nome) and verifica_credito(credito,nome)):
                     pacientes.append(cls.Paciente(nome,cpf,data_nasc,est_civil,plano,int(credito)))
             case 'Me':
-                if len(i.split(':')) < 2:
-                    match i.split(sep='=')[1]:
+                if len(i.split(':')) <= 2:
+                    match i.split(sep='=')[1].split(sep='->')[0]:
                         case 'internar':
                             npaciente=int(i.split(sep='->')[1][-1])-1
                             medico.internar(pacientes[npaciente])
@@ -55,7 +57,7 @@ for dia in range(1,2):
                         medico=cls.Medico(nome,cpf,data_nasc,est_civil,crm)
                     
             case 'En':
-                if len(i.split(':')) < 2:
+                if len(i.split(':')) <= 2:
                     match i.split(sep='=')[1].split(sep='->')[0]:
                         case 'cadastrar':
                             npaciente=int(i.split(sep='->')[1][-1])-1
@@ -74,7 +76,7 @@ for dia in range(1,2):
                         enfermeira=cls.Enfermeira(nome,cpf,data_nasc,est_civil,coren)
 
             case 'Se':
-                if len(i.split(':')) < 2:
+                if len(i.split(':')) <= 2:
                     match i.split('->')[1]:
                         case 'Medico':
                             secretaria.cadastrarFuncionarios(medico)

@@ -1,0 +1,15 @@
+Paciente1__Clarisse Matos:61144231000:13/05/2060:Solteiro:SUS:0
+Paciente2__Gabriel Machado:75749708071:20/10/2009:Solteiro:IPE:4000
+Enfermeira__Edenilson Kühl:14063975045:02/12/1977:Solteiro:1736821
+Medico__Beatriz Porto:69401025070:06/07/1988:Casado:CRM/RS 019746
+Secretaria__Lucia Espindola:09809707655:12/03/1987:Casado
+
+Secretaria=cadastrar->Medico
+Enfermeira=cadastrar->Paciente1
+Enfermeira=cadastrar->Paciente2
+Medico=diagnosticar->Paciente1:Intoxicaçao alimentar
+Medico=internar->Paciente1
+Enfermeira=relatorio->Paciente1
+Medico=diagnosticar->Paciente2:Anemia perniciosa
+Medico=internar->Paciente2
+Enfermeira=relatorio->Paciente2 

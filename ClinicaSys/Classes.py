@@ -113,8 +113,9 @@ class Medico(Pessoa):
         else:
             leitura = open('Saidas\\database\\pacientes.dat','r')
             texto=leitura.readlines()
-
-            paciente -= 150
+            
+            if paciente.Pconvenio.nome != 'SUS':
+                paciente -= 150
             paciente.diagnostico = diagnostico
             
             for i in range(0,len(texto)):
@@ -134,7 +135,7 @@ class Medico(Pessoa):
         for i in range(0,len(texto)):
             if texto[i].split(',')[0] == 'Nome: '+paciente.nome:
                 parte1 = texto[i].split(sep=',')[0]+','+texto[i].split(sep=',')[1]+','+texto[i].split(sep=',')[2]+','+texto[i].split(sep=',')[3]
-                texto[i]= f'{parte1}, {paciente.Pconvenio}, Liberado \n'
+                texto[i]= f'{parte1}, {paciente.Pconvenio}, Diagnóstico: {paciente.diagnostico}, Status: Liberado \n'
             
         escrita = open('Saidas\\database\\pacientes.dat','w')
         escrita.writelines(texto)
@@ -147,13 +148,14 @@ class Medico(Pessoa):
         else:
             leitura = open('Saidas\\database\\pacientes.dat','r')
             texto=leitura.readlines()
-            
-            paciente -= 500
+
+            if paciente.Pconvenio.nome != 'SUS':
+                paciente -= 500
 
             for i in range(0,len(texto)):
                 if texto[i].split(',')[0] == 'Nome: '+paciente.nome:
                     parte1 = texto[i].split(sep=',')[0]+','+texto[i].split(sep=',')[1]+','+texto[i].split(sep=',')[2]+','+texto[i].split(sep=',')[3]
-                    texto[i]= f'{parte1}, {paciente.Pconvenio}, Internado\n'
+                    texto[i]= f'{parte1}, {paciente.Pconvenio}, Diagnóstico: {paciente.diagnostico}, Status: Internado\n'
                 
             escrita = open('Saidas\\database\\pacientes.dat','w')
             escrita.writelines(texto)

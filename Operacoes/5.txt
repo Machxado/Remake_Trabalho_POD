@@ -1,0 +1,15 @@
+Paciente1__Marta Rocha:611442e100:17/09/1955:Casado:Unimed:2000
+Paciente2__Barbara Melo:99871597029:21/02/1998:Casado:IPE:1500
+Enfermeira__Alicia Lima:08289412037:03/08/1972:Solteiro:6218774
+Medico__Isabella Cardoso:83423139056:09/01/1981:Casado:CRM/RS 854721
+Secretaria__Breno Hernandez:52257007050:25/12/2000:Solteiro
+
+Secretaria=cadastrar->Secretaria
+Enfermeira=cadastrar->Paciente1
+Enfermeira=cadastrar->Paciente2
+Medico=diagnosticar->Paciente1:Asfixia Multipla
+Medico=liberar->Paciente1
+Enfermeira=relatorio->Paciente1
+Medico=diagnosticar->Paciente2:Dor de Ouvido
+Medico=liberar->Paciente2
+Enfermeira=relatorio->Paciente2 

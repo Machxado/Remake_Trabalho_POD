@@ -151,7 +151,7 @@ def verifica_data(data,nome):
             return False
         else:
             try:
-                assert (dia < 28 and mes == 2) or (dia < 30 and mes in [4,6,9,11]) or (dia <31 and mes in [1,3,5,7,8,10,12]) and ano > 1900
+                assert (dia <= 28 and mes == 2) or (dia <= 30 and mes in [4,6,9,11]) or (dia <= 31 and mes in [1,3,5,7,8,10,12]) and ano > 1900
             except AssertionError:
                 log.writelines(f'\nFoi detectado um erro ao tentar criar {nome}, por isso o objeto não foi criado. Verifique se a sua data de nascimento existe, ex: não existe dia 30/02 nem 31/04')
                 log.close()
@@ -178,7 +178,7 @@ def verifica_crm_existe(crm,nome):
     
     crms=[]
     for i in database.readlines():
-        if i.split(',')[0][7:] == 'Medico':
+        if i.split(',')[0][7:] == 'Médico':
             crms.append(i.split(',')[5].split(':')[1][1:-1])
     try:
         assert crm not in crms
