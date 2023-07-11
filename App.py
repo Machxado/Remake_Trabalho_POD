@@ -61,6 +61,7 @@ for dia in range(1,6):
                     match i.split(sep='=')[1].split(sep='->')[0]:
                         case 'cadastrar':
                             npaciente=int(i.split(sep='->')[1][-1])-1
+                                if len(pacientes) <= 
                             enfermeira.cadastrarPaciente(pacientes[npaciente])
                         case 'relatorio':
                             npaciente=int(i.split(sep='->')[1][-1])-1
