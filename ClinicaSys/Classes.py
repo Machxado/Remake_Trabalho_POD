@@ -168,6 +168,7 @@ class Medico(Pessoa):
     def cadastrarDados(self):
         arq=open('Saidas\\database\\funcionarios.dat','a')
         arq.writelines(f'\n{self.obterDados()}')
+        arq.close()
 
     def __str__(self):
         return f'Cargo: Médico, {super().__str__()}, CRM: {self.crm}'
@@ -189,10 +190,12 @@ class Enfermeira(Pessoa):
     def cadastrarDados(self):
         arq=open('Saidas\\database\\funcionarios.dat','a')
         arq.writelines(f'\n{self.obterDados()}')
+        arq.close()
 
     def cadastrarPaciente(self,paciente:Paciente):
         arq=open('Saidas\\database\\pacientes.dat','a')
         arq.writelines(f'\n{paciente.obterDados()}')
+        arq.close()
 
     def gerarRelatorio(self,medico:Medico,paciente:Paciente):
         dia = datetime.now().strftime('%d-%m-%Y')
@@ -208,6 +211,7 @@ Saldo final do convênio do paciente: {paciente.Pconvenio.credito}
         '''
         arq=open(f'Saidas/Relatorios/relatorio_{dia}_{paciente.cpf}','x')
         arq.writelines(texto)
+        arq.close()
     
     def __str__(self):
         return f'Cargo: Enfermeira, {super().__str__()}, COREN: {self.coren}'
@@ -224,6 +228,7 @@ class Secretaria(Pessoa):
     def cadastrarDados(self):
         arq=open('Saidas\\database\\funcionarios.dat','a')
         arq.writelines(f'\n{self.obterDados()}')
+        arq.close()
     
     def cadastrarFuncionarios(self,funcionario:Pessoa):
         match str(type(funcionario)):

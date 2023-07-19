@@ -1,2 +1,0 @@
-
-Foi detectado um erro ao tentar criar Flacio Amaral, por isso o objeto não foi criado. Erro: para um CPF ser válido, o mesmo necessita conter um total de 11 caracteres, sendo esses apenas dígitos, o valor inserido "0635312006" não possui 11 dígitos

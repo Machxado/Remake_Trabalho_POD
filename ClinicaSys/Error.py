@@ -85,9 +85,20 @@ class crm_Existente(Erro):
     
     def __str__(self):
         return f'O CRM informado {self.__crm} já foi registrado.'
-
     
 
+
+class Obj_n_existe(Erro):
+    def __init__(self,causa,acao):
+        super().__init__(causa)
+        self.__objeto=causa
+        self.__acao=acao
+
+    def __str__(self):
+        return f'\nO objeto {self.__objeto} que foi solicitado para realizar a operação {self.__acao} não existe, operação cancelada'
+
+
+    
 def verifica_cpf(cpf,nome):
         log=open('Saidas\\Log.txt','a')        
         try:
@@ -104,6 +115,7 @@ def verifica_cpf(cpf,nome):
                 log.close()
                 return False
             else:
+                log.close()
                 return True
 
 
@@ -116,7 +128,9 @@ def verifica_est_civil(est_civil,nome):
         log.writelines(f'\nFoi detectado um erro ao tentar criar {nome}, por isso o objeto não foi criado. Erro: {est_civil_invalido(est_civil)}')
         log.close()
         return False
-    else: return True
+    else: 
+        log.close()
+        return True
 
 
 
@@ -128,7 +142,9 @@ def verifica_convenio(convenio,nome):
         log.writelines(f'\nFoi detectado um erro ao tentar criar {nome}, por isso o objeto não foi criado. Erro: {ConvenioInvalido(convenio)}')
         log.close()
         return False
-    else: return True
+    else: 
+        log.close()
+        return True
 
 
 
@@ -156,7 +172,9 @@ def verifica_data(data,nome):
                 log.writelines(f'\nFoi detectado um erro ao tentar criar {nome}, por isso o objeto não foi criado. Verifique se a sua data de nascimento existe, ex: não existe dia 30/02 nem 31/04')
                 log.close()
                 return False
-            else: return True 
+            else: 
+                log.close()
+                return True 
 
 
 
@@ -168,7 +186,9 @@ def verifica_credito(credito,nome):
         log.writelines(f'\nFoi detectado um erro ao tentar criar {nome}, por isso o objeto não foi criado. Erro: {creditos_Invalidos(credito)}')
         log.close()
         return False
-    else: return True
+    else: 
+        log.close()
+        return True
 
 
 
@@ -213,3 +233,10 @@ def verifica_coren_existe(coren,nome):
         log.close()
         database.close() 
         return True
+    
+
+
+def log_obj_n_existe(objeto,comando):
+    log=open('Saidas\\Log.txt','a')
+    log.write(str(Obj_n_existe(objeto,comando)))
+    log.close()   

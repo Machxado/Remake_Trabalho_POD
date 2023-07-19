@@ -26,7 +26,9 @@ for dia in range(1,6):
     #criação dos objetos
     for i in comandos:
         match i [0:2]:
+
             case  'Pa':
+
                 nome = i.split(sep=':')[0][11:]
                 cpf = i.split(sep=':')[1]
                 data_nasc = i.split(sep=':')[2]
@@ -35,19 +37,38 @@ for dia in range(1,6):
                 credito = i.split(sep=':')[5]
                 if(verifica_cpf(cpf,nome) and verifica_convenio(plano, nome) and verifica_data(data_nasc,nome) and verifica_est_civil(est_civil,nome) and verifica_credito(credito,nome)):
                     pacientes.append(cls.Paciente(nome,cpf,data_nasc,est_civil,plano,int(credito)))
-            case 'Me':
+
+            case 'Me':                
                 if len(i.split(':')) <= 2:
+                    try:
+                        assert str(type(medico)) == '<class \'ClinicaSys.Classes.Medico\'>'
+                    except Exception:
+                        log_obj_n_existe('Medico',i.split(sep='=')[1].split(sep='->')[0])
+
                     match i.split(sep='=')[1].split(sep='->')[0]:
+
                         case 'internar':
                             npaciente=int(i.split(sep='->')[1][-1])-1
-                            medico.internar(pacientes[npaciente])
+                            try:
+                                medico.internar(pacientes[npaciente])
+                            except IndexError:
+                                log_obj_n_existe('pcaiente2','internar')
+
                         case 'liberar':
                             npaciente= int(i.split(sep='->')[1][-1])-1
-                            medico.liberar(pacientes[npaciente])
+                            try:
+                                medico.liberar(pacientes[npaciente])
+                            except IndexError:
+                                log_obj_n_existe('pcaiente2','liberar')
+
                         case 'diagnosticar':
                             npaciente= int(i.split(sep='->')[1].split(sep=':')[0][-1])-1
-                            medico.diagnosticar(pacientes[npaciente],i.split(sep=':')[1])
+                            try:
+                                medico.diagnosticar(pacientes[npaciente],i.split(sep=':')[1])
+                            except IndexError:
+                                log_obj_n_existe('pcaiente2','diagnosticar')
                 else: 
+
                     nome = i.split(sep=':')[0][8:]
                     cpf = i.split(sep=':')[1]
                     data_nasc = i.split(sep=':')[2]
@@ -58,14 +79,25 @@ for dia in range(1,6):
                     
             case 'En':
                 if len(i.split(':')) <= 2:
+                    try:
+                        assert str(type(enfermeira)) == '<class \'ClinicaSys.Classes.Enfermeira\'>'
+                    except Exception:
+                        log_obj_n_existe('Enfermeira',i.split(sep='=')[1].split(sep='->')[0])
+
                     match i.split(sep='=')[1].split(sep='->')[0]:
                         case 'cadastrar':
                             npaciente=int(i.split(sep='->')[1][-1])-1
-                                if len(pacientes) <= 
-                            enfermeira.cadastrarPaciente(pacientes[npaciente])
+                            try:
+                                enfermeira.cadastrarPaciente(pacientes[npaciente])
+                            except IndexError:
+                                log_obj_n_existe('pcaiente2','cadastrar')
+
                         case 'relatorio':
                             npaciente=int(i.split(sep='->')[1][-1])-1
-                            enfermeira.gerarRelatorio(medico,pacientes[npaciente])
+                            try:
+                                enfermeira.gerarRelatorio(medico,pacientes[npaciente])
+                            except IndexError:
+                                log_obj_n_existe('pcaiente2','relatorio')
                 
                 else:
                     nome = i.split(sep=':')[0][12:]
@@ -78,6 +110,11 @@ for dia in range(1,6):
 
             case 'Se':
                 if len(i.split(':')) <= 2:
+                    try:
+                        assert str(type(secretaria)) == '<class \'ClinicaSys.Classes.Secretaria\'>'
+                    except Exception:
+                        log_obj_n_existe('Secretaria',i.split(sep='=')[1].split(sep='->')[0])
+
                     match i.split('->')[1]:
                         case 'Medico':
                             secretaria.cadastrarFuncionarios(medico)
@@ -95,7 +132,10 @@ for dia in range(1,6):
                         secretaria=cls.Secretaria(nome,cpf,data_nasc,est_civil)
     print(comandos)
     print(pacientes[0])
-    print(pacientes[1])
+    try:
+        print(pacientes[1])
+    except IndexError:
+        pass
     print(secretaria)
     print(enfermeira)
     print(medico)
